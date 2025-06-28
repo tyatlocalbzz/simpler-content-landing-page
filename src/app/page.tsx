@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, Users, FileText, Zap, Target, Download } from "lucide-react";
 import Image from "next/image";
+import { generateBlurDataURL, imageLoadingConfig, imageSizes } from "@/lib/image-utils";
 
 export default function LandingPage() {
   return (
@@ -42,15 +43,17 @@ export default function LandingPage() {
           <header className="text-center space-y-8 lg:space-y-12 mb-16 lg:mb-24">
             <div className="space-y-6 lg:space-y-8">
               <div className="flex items-center justify-center gap-3 lg:gap-4">
-                <div className="relative">
+                <div className="relative w-12 h-12 lg:w-16 lg:h-16">
                   <Image
                     src="/simplercontent-logo.png"
                     alt="SimplerContent Logo"
-                    width={64}
-                    height={64}
-                    className="w-12 h-12 lg:w-16 lg:h-16"
-                    priority
-                    sizes="(max-width: 768px) 48px, 64px"
+                    fill
+                    className="object-contain"
+                    {...imageLoadingConfig.priority}
+                    quality={90}
+                    sizes={imageSizes.logo}
+                    placeholder="blur"
+                    blurDataURL={generateBlurDataURL('#6366f1')}
                   />
                 </div>
                 <h1 className="text-2xl lg:text-4xl font-bold text-gray-900">
@@ -59,10 +62,10 @@ export default function LandingPage() {
               </div>
               
               <div className="space-y-4 lg:space-y-6">
-                <h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold leading-tight max-w-4xl mx-auto">
+                <h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold leading-tight text-balance">
                   Simplify Your Shoots. Deliver with Confidence. Scale Without Burnout.
                 </h2>
-                <p className="text-gray-600 text-lg lg:text-xl xl:text-2xl max-w-3xl mx-auto leading-relaxed">
+                <p className="text-gray-600 text-lg lg:text-xl xl:text-2xl max-w-3xl mx-auto leading-relaxed text-pretty">
                   The content production system built for creators who manage clients — not corporations.
                 </p>
               </div>
@@ -92,26 +95,26 @@ export default function LandingPage() {
             {/* Is This You Section */}
             <section aria-labelledby="pain-points-heading" className="space-y-8 lg:space-y-12">
               <div className="text-center">
-                <h2 id="pain-points-heading" className="text-2xl lg:text-3xl xl:text-4xl font-semibold">
+                <h2 id="pain-points-heading" className="text-2xl lg:text-3xl xl:text-4xl font-semibold text-balance">
                   Is This You?
                 </h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
                 <div className="flex items-start space-x-4 md:flex-col md:space-x-0 md:space-y-4 md:text-center p-4 lg:p-6">
                   <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0 md:mx-auto" aria-hidden="true" />
-                  <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
+                  <p className="text-base lg:text-lg text-gray-700 leading-relaxed text-pretty">
                     Managing 3+ clients and tired of duct-taping spreadsheets, chats, and folders
                   </p>
                 </div>
                 <div className="flex items-start space-x-4 md:flex-col md:space-x-0 md:space-y-4 md:text-center p-4 lg:p-6">
                   <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0 md:mx-auto" aria-hidden="true" />
-                  <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
+                  <p className="text-base lg:text-lg text-gray-700 leading-relaxed text-pretty">
                     Missed a shot, lost a file, or sent a post late — and it cost you
                   </p>
                 </div>
                 <div className="flex items-start space-x-4 md:flex-col md:space-x-0 md:space-y-4 md:text-center p-4 lg:p-6 md:col-span-2 lg:col-span-1">
                   <CheckCircle className="h-6 w-6 text-green-500 flex-shrink-0 md:mx-auto" aria-hidden="true" />
-                  <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
+                  <p className="text-base lg:text-lg text-gray-700 leading-relaxed text-pretty">
                     Your tools are either too simple, too complex, or just not made for content creators
                   </p>
                 </div>
@@ -121,7 +124,7 @@ export default function LandingPage() {
             {/* Built to Fix Problems Section */}
             <section aria-labelledby="solutions-heading" className="space-y-8 lg:space-y-12">
               <div className="text-center">
-                <h2 id="solutions-heading" className="text-2xl lg:text-3xl xl:text-4xl font-semibold">
+                <h2 id="solutions-heading" className="text-2xl lg:text-3xl xl:text-4xl font-semibold text-balance">
                   Built to Fix the Real Problems
                 </h2>
               </div>
@@ -151,7 +154,7 @@ export default function LandingPage() {
                           <h3 className="text-base lg:text-lg font-medium text-gray-900 mb-2">
                             You&apos;re Struggling With...
                           </h3>
-                          <p className="text-base lg:text-lg text-gray-600">
+                          <p className="text-base lg:text-lg text-gray-600 text-pretty">
                             {item.problem}
                           </p>
                         </div>
@@ -159,7 +162,7 @@ export default function LandingPage() {
                           <h3 className="text-base lg:text-lg font-medium text-indigo-600 mb-2">
                             SimplerContent Gives You...
                           </h3>
-                          <p className="text-base lg:text-lg text-gray-700">
+                          <p className="text-base lg:text-lg text-gray-700 text-pretty">
                             {item.solution}
                           </p>
                         </div>
@@ -173,7 +176,7 @@ export default function LandingPage() {
             {/* Growth Stages Section */}
             <section aria-labelledby="growth-stages-heading" className="space-y-8 lg:space-y-12">
               <div className="text-center">
-                <h2 id="growth-stages-heading" className="text-2xl lg:text-3xl xl:text-4xl font-semibold">
+                <h2 id="growth-stages-heading" className="text-2xl lg:text-3xl xl:text-4xl font-semibold text-balance">
                   Designed for Every Stage of Growth
                 </h2>
               </div>
@@ -209,7 +212,7 @@ export default function LandingPage() {
                           <blockquote className="text-base lg:text-lg text-gray-600 italic">
                             {stage.quote}
                           </blockquote>
-                          <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
+                          <p className="text-base lg:text-lg text-gray-700 leading-relaxed text-pretty">
                             {stage.description}
                           </p>
                         </div>
@@ -223,7 +226,7 @@ export default function LandingPage() {
             {/* Why It Works Section */}
             <section aria-labelledby="why-it-works-heading" className="space-y-8 lg:space-y-12">
               <div className="text-center">
-                <h2 id="why-it-works-heading" className="text-2xl lg:text-3xl xl:text-4xl font-semibold">
+                <h2 id="why-it-works-heading" className="text-2xl lg:text-3xl xl:text-4xl font-semibold text-balance">
                   Why SimplerContent Works
                 </h2>
               </div>
@@ -250,7 +253,7 @@ export default function LandingPage() {
                   return (
                     <div key={index} className="flex items-start space-x-4 p-4 lg:p-6">
                       <Icon className="h-6 w-6 lg:h-7 lg:w-7 text-indigo-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                      <p className="text-base lg:text-lg text-gray-700 leading-relaxed">
+                      <p className="text-base lg:text-lg text-gray-700 leading-relaxed text-pretty">
                         {item.text}
                       </p>
                     </div>
@@ -262,10 +265,10 @@ export default function LandingPage() {
             {/* CTA Section */}
             <section aria-labelledby="cta-heading" className="text-center space-y-8 lg:space-y-10">
               <div className="space-y-4">
-                <h2 id="cta-heading" className="text-2xl lg:text-3xl xl:text-4xl font-semibold">
+                <h2 id="cta-heading" className="text-2xl lg:text-3xl xl:text-4xl font-semibold text-balance">
                   Start Now — Save Hours This Week
                 </h2>
-                <p className="text-gray-600 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed">
+                <p className="text-gray-600 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed text-pretty">
                   Set up your first client in under 60 seconds.<br />
                   No contracts. No learning curve. Just clarity.
                 </p>
